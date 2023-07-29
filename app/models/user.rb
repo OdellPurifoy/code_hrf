@@ -23,6 +23,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :first_name, :last_name, :date_of_birth, presence: true
+  validates :phone_number, phone: { possible: true, allow_blank: true }
   validate :user_over_eighteen
 
   private
