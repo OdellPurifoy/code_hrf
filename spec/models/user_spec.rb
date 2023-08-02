@@ -36,22 +36,21 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:date_of_birth) }
   end
 
-  # Fix this 
-  # describe 'Custom validations' do
-  #   context 'when a user is under 18 years of age' do
-  #     let!(:user) { FactoryBot.create(:user, date_of_birth: (Time.zone.now - 12.years).to_date) }
+  describe 'Custom validations' do
+    context 'when a user is under 18 years of age' do
+      let(:user) { FactoryBot.create(:user, date_of_birth: (Time.zone.now - 12.years).to_date) }
 
-  #     it 'raises an error' do
-  #       expect { described_class }.to raise_error
-  #     end
-  #   end
+      it 'raises an error' do
+        expect(user.errors.messages).to include(date_of_birth: ['Must be 18 or older.'])
+      end
+    end
 
-  #   context 'when a user if older than 18 year of age' do
-  #     let!(:user) { FactoryBot.create(:user, date_of_birth: (Time.zone.now - 19.years).to_date) }
+    context 'when a user if older than 18 year of age' do
+      let!(:user) { FactoryBot.create(:user, date_of_birth: (Time.zone.now - 19.years).to_date) }
 
-  #     it 'does not raise an error' do
-  #       expect { described_class }.to_not raise_error
-  #     end
-  #   end
-  # end
+      it 'does not raise an error' do
+        expect { described_class }.to_not raise_error
+      end
+    end
+  end
 end

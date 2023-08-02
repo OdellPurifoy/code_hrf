@@ -24,11 +24,11 @@ class User < ApplicationRecord
 
   has_many :lounges, dependent: :destroy
 
-  validates :first_name, :last_name, :date_of_birth, presence: true
+  validates_presence_of :first_name, :last_name, :date_of_birth, presence: true
   validates :phone_number, phone: { possible: true, allow_blank: true }
-  validate :user_over_eighteen
+  before_save :user_over_eighteen
 
-  private
+  protected
 
   def user_over_eighteen
     errors.add(:date_of_birth, 'Must be 18 or older.') unless date_of_birth.before? Time.zone.now - 18.years
