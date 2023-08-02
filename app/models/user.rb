@@ -22,6 +22,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :lounges, dependent: :destroy
+
   validates :first_name, :last_name, :date_of_birth, presence: true
   validates :phone_number, phone: { possible: true, allow_blank: true }
   validate :user_over_eighteen
