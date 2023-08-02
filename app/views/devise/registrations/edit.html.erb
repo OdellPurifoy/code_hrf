@@ -1,43 +1,90 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section>
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit Profile</p>
+                
+                <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <%= f.text_field :first_name, autofocus: true, class: 'form-control', autocomplete: "email" %>
+                      <%= f.label :first_name, class: 'form-label mt-2' %>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user-plus fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <%= f.text_field :last_name, autofocus: true, class: 'form-control', autocomplete: "email" %>
+                      <%= f.label :last_name, class: 'form-label mt-2' %>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-calendar fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <%= f.date_field :date_of_birth, autofocus: true, class: 'form-control', autocomplete: "email" %>
+                      <%= f.label :date_of_birth, class: 'form-label mt-2' %>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <%= f.email_field :email, autofocus: true, class: 'form-control', autocomplete: "email" %>
+                      <%= f.label :email, class: 'form-label mt-2' %>
+                    </div>
+                  </div>
+
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                  <% end %>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <%= f.password_field :password, class: 'form-control', autocomplete: "new-password", placeholder: "Leave blank to keep current password" %>
+                      <%= f.label :password, class: 'form-label mt-2' %> <small>(6 characters minimum)</small>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password" %>
+                      <%= f.label :password_confirmation, class: 'form-label mt-2' %>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <%= f.password_field :current_password, class: 'form-control', autocomplete: "current-password" %>
+                      <%= f.label :current_password, class: 'form-label mt-2' %> <small>(we need your current password to confirm your changes)</small>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-start mx-4 mb-3 mb-lg-4">
+                    <%= f.submit "Update", id: 'update-profile' %>
+                    <div><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, id: 'cancel-account', method: :delete %></div>
+                    <%= link_to "Back", :back, id: 'profile-back-link' %>
+                  </div>
+                <% end %>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</section>

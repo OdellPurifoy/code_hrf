@@ -731,3 +731,17 @@
     }
   }
 }
+
+#pricing-input, #logout, #edit_event_button, #update_lounge_button, #cancel-account, #update-profile, #profile-back-link {
+  background-color: $primary;
+  color: white;
+  padding: 8px 25px;
+  border-radius: 4px;
+  font-weight: 400;
+  border: none;
+  margin-left: 2px;
+  &:hover {
+    color: white;
+    background: darken(#a85c44, 8);
+  }
+}

@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center">
+<div class="d-flex align-items-center mt-2">
   <% flash.each do |type, msg| %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <%= msg %>
@@ -9,7 +9,7 @@
   <nav id="navbar" class="navbar">
     <ul>
       <li><a href="/" class="active">Home</a></li>
-      <% if user_signed_in? && current_user.lounge.present? %>
+      <% if user_signed_in? %>
         <%= link_to 'Profile', edit_user_registration_path %>
         <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete %>
       <% elsif user_signed_in? && current_user.subscribed? %>
