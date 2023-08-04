@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :lounges
+
+  get 'my_lounge', to: 'lounges#my_lounge'
 end

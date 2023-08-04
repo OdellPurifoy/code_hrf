@@ -18,7 +18,7 @@ class LoungesController < ApplicationController
   def edit; end
 
   def create
-    @lounge = current_user.build_lounge(lounge_params)
+    @lounge = current_user.lounges.build(lounge_params)
 
     respond_to do |format|
       if @lounge.save
@@ -49,13 +49,14 @@ class LoungesController < ApplicationController
     redirect_to root_path, status: :see_other, notice: 'Lounge was successfully deleted.'
   end
 
-  # def my_lounge
-  #   @current_user_lounge = current_user.lounge
-  #   return if @current_user_lounge.present?
-
-  #   redirect_to root_path, status: :not_found,
-  #                          notice: 'Sorry, your lounge could not be found.'
-  # end
+  def my_lounge
+    if current_user.lounges.empty?
+      flash[:notice] = 'No lounges associated with this account' 
+      redirect_to root_path, status: :not_found
+    else
+      @current_user_lounge = current_user.lounges.first
+    end
+  end
 
   private
 

@@ -1,0 +1,72 @@
+<section id="services" class="services">
+  <div class="container" style="padding-top: 150px">
+    <%= render 'shared/lounge_owner_navbar' %>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <div class="icon-box">
+          <% if @current_user_lounge.logo.present? %>
+            <%= image_tag @current_user_lounge.logo, class: 'thumbnail', size: "100x100" %><br />
+          <% else %>
+            <i class="bi bi-shop"></i>
+          <% end %>
+          <h4 style='margin-left: 0px'><%= @current_user_lounge&.name %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-phone"></i>      
+          <h4><%= @current_user_lounge&.phone_number %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-envelope-at"></i>
+          <h4><%= @current_user_lounge&.email %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-geo-alt"></i>
+          <h4>      
+            <%= @current_user_lounge&.address&.address_street_1 %>,
+            <%= @current_user_lounge&.address&.address_street_2 %>
+            <%= @current_user_lounge&.address&.city %>,
+            <%= @current_user_lounge&.address&.state %>
+            <%= @current_user_lounge&.address&.zipcode %>
+          </h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-info-circle"></i>
+          <h4><%= @current_user_lounge&.description %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-cup-straw"></i>
+          <h4><%= @current_user_lounge&.alcohol_served ? 'Alcohol served' : 'Alcohol not served' %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-egg-fried"></i>
+          <h4><%= @current_user_lounge&.food_served ? 'Food served' : 'Food not served' %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-cup-straw"></i>
+          <h4><%= @current_user_lounge&.outside_alcohol_allowed ? 'Outside alcohol allowed' : 'Outside alcohol not allowed' %></h4>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <div class="icon-box">
+          <i class="bi bi-fire"></i>
+          <h4><%= @current_user_lounge&.outside_cigars_allowed ? 'Outside cigars allowed' : 'Outside cigard not allowed' %></h4>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section><!-- End Services Section -->
