@@ -17,10 +17,10 @@
 #
 class Lounge < ApplicationRecord
   belongs_to :user
-  
+
   has_one :address, dependent: :destroy, inverse_of: :lounge
   accepts_nested_attributes_for :address
-  
+
   has_one_attached :logo
 
   validates :name, :phone_number, :description, presence: true

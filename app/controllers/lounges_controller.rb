@@ -51,7 +51,7 @@ class LoungesController < ApplicationController
 
   def my_lounge
     if current_user.lounges.empty?
-      flash[:notice] = 'No lounges associated with this account' 
+      flash[:notice] = 'No lounges associated with this account'
       redirect_to root_path, status: :not_found
     else
       @current_user_lounge = current_user.lounges.first
