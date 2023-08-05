@@ -1,0 +1,22 @@
+<div id="<%= dom_id membership %>" style='padding-top: 100px'>
+  <h3 class='mb-3'><%= membership.first_name %> <%= membership.last_name %></h3>
+  <p>
+    <strong>Email:</strong>
+    <%= membership.email %>
+  </p>
+
+  <p>
+    <strong>Phone number:</strong>
+    <%= membership.phone_number %>
+  </p>
+
+  <p>
+    <strong>Do not text:</strong>
+    <%= membership.do_not_text? ? 'Yes' : 'No' %>
+  </p>
+
+  <p>
+    <strong>Do not email:</strong>
+    <%= membership.do_not_email? ? 'Yes' : 'No' %>
+  </p>
+</div>

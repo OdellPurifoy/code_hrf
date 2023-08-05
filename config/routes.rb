@@ -9,6 +9,14 @@ Rails.application.routes.draw do
 
   resources :lounges do
     resources :events, shallow: true
+    resources :memberships, shallow: true
+  end
+
+  resources :memberships do
+    member do
+      post :activate
+      post :deactivate
+    end
   end
 
   get 'my_lounge', to: 'lounges#my_lounge'
