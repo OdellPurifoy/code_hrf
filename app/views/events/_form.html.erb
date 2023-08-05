@@ -1,0 +1,105 @@
+<%= form_with(model: [@lounge, @event]) do |form| %>
+  <% if event.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+        <% @event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='d-flex justify-content-around'>
+    <div>
+
+      <label for="event-name" class="form-label">Event Name</label>
+      <div class="input-group mb-3">
+        <%= form.text_field :name, class: 'form-control', style: 'width: 400px' %>
+      </div>
+
+      <label for="event-type" class="form-label">Event Type</label>
+      <select name="event[event_type]" class="form-select mb-3" id="event_event_type"><option value="Live Music">Live Music</option>
+      <option value="Whiskey Tasting">Whiskey Tasting</option>
+      <option value="Cigar Brand Event">Cigar Brand Event</option>
+      <option value="Holiday">Holiday</option>
+      <option value="Sports">Sports</option>
+      <option value="Virtual">Virtual</option></select>
+
+      <label for="event-date" class="form-label">Event Date</label>
+      <div class="input-group mb-3">
+        <%= form.date_field :event_date, min: Date.today, class: 'form-select' %>
+      </div>
+      
+      <label for="event-url" class="form-label">Event Url</label>
+      <div class="input-group mb-3">
+        <%= form.text_field :event_url, class: 'form-control' %>
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">Details</span>
+        <%= form.text_area :event_description, class: 'form-control', style: 'height: 200px' %>
+      </div>
+    </div>
+
+    <div>
+      <label for="event-zoom-code" class="form-label">Zoom Code</label>
+      <div class="input-group mb-3">
+        <%= form.text_field :zoom_code, class: 'form-control', style: 'width: 200px' %>
+      </div>
+
+      <label for="event-max-capacity" class="form-label">Maximum Capacity</label>
+      <div class="input-group mb-3">
+        <%= form.number_field :maximum_capacity, class: 'form-control' %>
+      </div>
+
+      <label for="event-start-time" class="form-label">Start Time</label>
+      <div class="input-group mb-3">
+        <%= form.time_field :start_time, value: "%H:%M", class: 'form-control' %>
+      </div>
+
+      <label for="event-end-time" class="form-label">End Time</label>
+      <div class="input-group mb-3">
+        <%= form.time_field :end_time, value: "%H:%M", class: 'form-control' %>
+      </div>
+
+      <div class="form-check">
+        <%= form.check_box :rsvp_needed, class: 'form-check-input' %>
+        <label class="form-check-label" for="flexRadioDefault1">
+          RSVP Needed? <span class="text-muted">(check if yes)</span>
+        </label>
+      </div>
+
+      <div class="form-check">
+        <%= form.check_box :is_virtual, class: 'form-check-input' %>
+        <label class="form-check-label" for="flexRadioDefault1">
+          Virtual Event? <span class="text-muted">(check if yes)</span>
+        </label>
+      </div>
+
+      <div class="form-check mb-3">
+        <%= form.check_box :members_only, class: 'form-check-input' %>
+        <label class="form-check-label" for="flexRadioDefault1">
+          Members Only? <span class="text-muted">(check if yes)</span>
+        </label>
+      </div>
+
+      <div class="input-group mb-3">
+        <% if event.flyer.present? %>
+          <div id="<%= dom_id(event, :flyer) %>">
+            <%= image_tag event.flyer, size: "300x300" %>
+              <%= link_to "Remove flyer", event_event_flyer_url(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </div>
+          <% end %>
+        <label class="input-group-text" for="inputGroupFile01">Flyer</label>
+        <%= form.file_field :flyer, class: 'form-control' %>
+      </div>
+
+      <div>
+        <%= form.submit id:'update_lounge_button' %>
+      </div>
+
+    </div>
+  </div>
+<% end %>

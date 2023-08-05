@@ -1,0 +1,59 @@
+  <div id="<%= dom_id event %>">
+    <div class="icon-box">
+      <p>
+        <%= image_tag event.flyer, size: "100x100" if event.flyer.present? %><br />
+        <strong>Event name:</strong>
+        <%= event.name %>
+      </p>
+
+      <p>
+        <strong>Date:</strong>
+        <%= event.event_date.strftime('%b %e, %Y') %>
+      </p>
+
+      <p>
+        <strong>Type:</strong>
+        <%= event.event_type %>
+      </p>
+
+      <p>
+        <strong>Details:</strong>
+        <%= event.event_description.present? ? event.event_description : 'No details available' %>
+      </p>
+
+      <p>
+        <strong>Event url:</strong>
+        <%= event.event_url.present? ? event.event_url : 'None' %>
+      </p>
+
+      <p>
+        <strong>Zoom code:</strong>
+        <%= event.zoom_code.present? ? event.zoom_code : 'None' %>
+      </p>
+
+      <p>
+        <strong>RSVP needed:</strong>
+        <%= event.rsvp_needed? ? 'Yes' : 'No' %>
+      </p>
+
+      <p>
+        <strong>Number of seats:</strong>
+        <%= event.maximum_capacity %>
+      </p>
+
+      <p>
+        <strong>Start time:</strong>
+        <%= event.start_time.strftime('%l:%M %P') %>
+      </p>
+
+      <p>
+        <strong>End time:</strong>
+        <%= event.end_time.strftime('%l:%M %P') %>
+      </p>
+
+      <p>
+        <strong>Members only:</strong>
+        <%= event.members_only? ? 'Yes' : 'No' %>
+      </p>
+    </div>
+  </div>

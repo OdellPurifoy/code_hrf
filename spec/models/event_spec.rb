@@ -42,7 +42,7 @@ RSpec.describe Event, type: :model do
     let(:lounge) { FactoryBot.create(:lounge) }
 
     it 'triggers a validation error' do
-      expect { event }.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Event url is not a valid URL')
+      expect { event }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Event url is not a valid URL, Event url can't be blank")
     end
 
     context "when event_type is 'Virtual and event_url is provided" do
@@ -56,6 +56,15 @@ RSpec.describe Event, type: :model do
 
     context 'when the url is provided but it is invalid' do
       let(:event_3) { FactoryBot.create(:event, is_virtual: true, event_url: 'test-event.com', lounge: lounge) }
+      let(:lounge) { FactoryBot.create(:lounge) }
+
+      it 'trigger an invalid url error' do
+        expect { event_3 }.to raise_error
+      end
+    end
+
+    context 'when the event is virtual but no event_url is present' do
+      let(:event_3) { FactoryBot.create(:event, is_virtual: true, event_url: nil, lounge: lounge) }
       let(:lounge) { FactoryBot.create(:lounge) }
 
       it 'trigger an invalid url error' do
