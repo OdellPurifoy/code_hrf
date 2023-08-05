@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: addresses
+#
+#  id               :uuid             not null, primary key
+#  address_street_1 :string           not null
+#  address_street_2 :string
+#  city             :string           not null
+#  state            :string           not null
+#  zipcode          :string           not null
+#  lounge_id        :uuid             not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do

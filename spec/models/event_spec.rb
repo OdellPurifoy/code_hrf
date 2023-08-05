@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id                :uuid             not null, primary key
+#  name              :string           not null
+#  event_type        :string           not null
+#  event_url         :string
+#  zoom_code         :string
+#  rsvp_needed       :boolean          default(FALSE), not null
+#  maximum_capacity  :integer
+#  start_time        :time             not null
+#  end_time          :time             not null
+#  members_only      :boolean          default(FALSE), not null
+#  is_virtual        :boolean
+#  event_description :text             not null
+#  event_date        :date             not null
+#  lounge_id         :uuid             not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
