@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddFieldsToLounge < ActiveRecord::Migration[7.0]
   def change
     add_column :lounges, :alcohol_served, :boolean, default: false

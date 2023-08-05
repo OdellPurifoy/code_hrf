@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: %i[new edit create update destroy]
 
   def index
-    @events = @lounge.events.order(created_at: :desc).page(params[:page])
+    @events = @lounge.events.order(created_at: :desc)
   end
 
   def show; end

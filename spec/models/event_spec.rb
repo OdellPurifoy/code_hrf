@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: events
@@ -42,7 +44,10 @@ RSpec.describe Event, type: :model do
     let(:lounge) { FactoryBot.create(:lounge) }
 
     it 'triggers a validation error' do
-      expect { event }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Event url is not a valid URL, Event url can't be blank")
+      expect do
+        event
+      end.to raise_error(ActiveRecord::RecordInvalid,
+                         "Validation failed: Event url is not a valid URL, Event url can't be blank")
     end
 
     context "when event_type is 'Virtual and event_url is provided" do
