@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_805_024_502) do
+ActiveRecord::Schema[7.0].define(version: 20_230_805_200_925) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -92,6 +92,20 @@ ActiveRecord::Schema[7.0].define(version: 20_230_805_024_502) do
     t.index ['user_id'], name: 'index_lounges_on_user_id'
   end
 
+  create_table 'memberships', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'first_name', null: false
+    t.string 'last_name', null: false
+    t.string 'email', null: false
+    t.string 'phone_number'
+    t.boolean 'do_not_text', default: false
+    t.boolean 'do_not_email', default: false
+    t.boolean 'active', default: true
+    t.uuid 'lounge_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['lounge_id'], name: 'index_memberships_on_lounge_id'
+  end
+
   create_table 'users', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'email', default: '', null: false
     t.string 'encrypted_password', default: '', null: false
@@ -114,4 +128,5 @@ ActiveRecord::Schema[7.0].define(version: 20_230_805_024_502) do
   add_foreign_key 'addresses', 'lounges'
   add_foreign_key 'events', 'lounges'
   add_foreign_key 'lounges', 'users'
+  add_foreign_key 'memberships', 'lounges'
 end

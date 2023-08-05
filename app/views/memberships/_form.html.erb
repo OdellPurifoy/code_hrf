@@ -1,0 +1,44 @@
+<%= form_with(model: [@lounge, @membership]) do |form| %>
+  <% if membership.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
+
+      <ul>
+        <% membership.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <label for="membership-first-name" class="form-label">First Name</label>
+  <div class="input-group mb-3">
+    <%= form.text_field :first_name, class: 'form-control', style: 'width: 400px' %>
+  </div>
+
+  <label for="membership-last-name" class="form-label">Last Name</label>
+  <div class="input-group mb-3">
+    <%= form.text_field :last_name, class: 'form-control' %>
+  </div>
+
+  <label for="membership-email" class="form-label">Email</label>
+  <div class="input-group mb-3">
+    <%= form.email_field :email, class: 'form-control' %>
+  </div>
+
+  <label for="membership-phone-number" class="form-label">Phone Number</label>
+    <div class="input-group mb-3">
+    <%= form.text_field :phone_number, class: 'form-control' %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :do_not_text, class: 'form-check-input' %>
+    <label class="form-check-label" for="flexRadioDefault1">
+      Do not text? <span class="text-muted">(check if yes)</span>
+    </label>
+  </div>
+
+  <div>
+    <%= form.submit id:'update_lounge_button' %>
+  </div>
+<% end %>

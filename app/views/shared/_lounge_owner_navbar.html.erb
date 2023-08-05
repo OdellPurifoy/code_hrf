@@ -15,7 +15,7 @@
           <%= link_to "View Events", lounge_events_path(current_user.lounges.first) %>
         </li>
         <li class="nav-item">
-          <%= link_to "Memberships", '#' %>
+          <%= link_to "Memberships", lounge_memberships_path(current_user.lounges.first) %>
         </li>
         <li class="nav-item">
           <%= link_to "Special Offers", '#' %>
