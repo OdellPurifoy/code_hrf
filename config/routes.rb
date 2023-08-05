@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :lounges
+  resources :events
+
+  resources :lounges do
+    resources :events, shallow: true
+  end
 
   get 'my_lounge', to: 'lounges#my_lounge'
 end
