@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
   <div class="container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,10 +9,10 @@
           <%= link_to "Edit Lounge", edit_lounge_path(current_user.lounges.first) %>
         </li>
         <li class="nav-item">
-          <%= link_to "New Event", '#' %>
+          <%= link_to "New Event", new_lounge_event_path(current_user.lounges.first) %>
         </li>
         <li class="nav-item">
-          <%= link_to "View Events", '#' %>
+          <%= link_to "View Events", lounge_events_path(current_user.lounges.first) %>
         </li>
         <li class="nav-item">
           <%= link_to "Memberships", '#' %>
@@ -21,7 +21,7 @@
           <%= link_to "Special Offers", '#' %>
         </li>
         <li class="nav-item">
-          <%= button_to "Delete Lounge", @lounge, class: 'delete-lounge', method: :delete %>
+          <%= button_to "Delete Lounge", "/lounges/#{current_user.lounges.first.id}", class: 'btn btn-outline-danger btn-sm', method: :delete %>
         </li>
       </ul>
       <span class="navbar-text">

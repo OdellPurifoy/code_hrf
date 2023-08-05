@@ -25,7 +25,7 @@ class Event < ApplicationRecord
   TYPES = ['Live Music', 'Whiskey Tasting', 'Cigar Brand Event', 'Holiday', 'Sports', 'Virtual'].freeze
 
   belongs_to :lounge
-  has_many :rsvps, dependent: :destroy
+  # has_many :rsvps, dependent: :destroy
 
   has_one_attached :flyer
   validates_presence_of :name, :event_type, :start_time, :end_time, :event_date

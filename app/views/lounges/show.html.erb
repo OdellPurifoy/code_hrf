@@ -1,3 +1,8 @@
 <div class='container' id='show_lounge'>
-  <%= @lounge.name %>
+  <% if current_user.id == @lounge.user_id %>
+    <%= render 'shared/lounge_owner_navbar', locals: { current_user: current_user} %>
+  <% else %>
+    <%= render 'shared/lounge_visitor_navbar' %>
+  <% end %>
+  <%= render @lounge %>
 </div>
