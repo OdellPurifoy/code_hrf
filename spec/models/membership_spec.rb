@@ -1,5 +1,21 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: memberships
+#
+#  id           :uuid             not null, primary key
+#  first_name   :string           not null
+#  last_name    :string           not null
+#  email        :string           not null
+#  phone_number :string
+#  do_not_text  :boolean          default(FALSE)
+#  do_not_email :boolean          default(FALSE)
+#  active       :boolean          default(TRUE)
+#  lounge_id    :uuid             not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Membership, type: :model do
