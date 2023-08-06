@@ -1,0 +1,56 @@
+<%= form_with(model: [@lounge, @special_offer]) do |form| %>
+  <% if special_offer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(special_offer.errors.count, "error") %> prohibited this special_offer from being saved:</h2>
+
+      <ul>
+        <% special_offer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <label for="special-offer-name" class="form-label">Name</label>
+  <div class="input-group mb-3">
+    <%= form.text_field :name, class: 'form-control', style: 'width: 400px' %>
+  </div>
+
+  <label for="special-offer-start-date" class="form-label">Start Date</label>
+  <div class="input-group mb-3">
+    <%= form.date_field :start_date, class: 'form-control' %>
+  </div>
+
+  <label for="special-offer-end-date" class="form-label">End Date</label>
+  <div class="input-group mb-3">
+    <%= form.date_field :end_date, class: 'form-control' %>
+  </div>
+
+  <label for="special-offer-end-date" class="form-label">Offer Type</label>
+  <select name="special_offer[offer_type]" class="form-select mb-3" id="special_offer_offer_type"><option selected="selected" value="BOGO (Buy one, get one)">BOGO (Buy one, get one)</option>
+  <option value="Holiday">Holiday</option>
+  <option value="Brand Discount">Brand Discount</option>
+  <option value="General Discont">General Discont</option>
+  </select>
+
+  <label for="special-offer-end-date" class="form-label">Offer Code (optional)</label>
+  <div class="input-group mb-3">
+    <%= form.text_field :offer_code, class: 'form-control' %>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text">Description</span>
+    <%= form.text_area :description, class: 'form-control', style: 'height: 200px' %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :members_only, class: 'form-check-input' %>
+    <label class="form-check-label" for="flexRadioDefault1">
+      Members Only? <span class="text-muted">(check if yes)</span>
+    </label>
+  </div>
+
+  <div>
+    <%= form.submit id:'update_lounge_button' %>
+  </div>
+<% end %>

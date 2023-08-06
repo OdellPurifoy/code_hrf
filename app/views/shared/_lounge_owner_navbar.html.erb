@@ -18,7 +18,7 @@
           <%= link_to "Memberships", lounge_memberships_path(current_user.lounges.first) %>
         </li>
         <li class="nav-item">
-          <%= link_to "Special Offers", '#' %>
+          <%= link_to "Special Offers", lounge_special_offers_path(current_user.lounges.first) %>
         </li>
         <li class="nav-item">
           <%= button_to "Delete Lounge", "/lounges/#{current_user.lounges.first.id}", class: 'btn btn-outline-danger btn-sm', method: :delete %>

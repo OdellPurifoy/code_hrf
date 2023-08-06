@@ -38,12 +38,12 @@
             <td><%= membership.phone_number %></td>
             <td><%= membership.active ? 'Yes' : 'No' %></td>
             <% if membership.active? %>
-              <td><%= button_to "Deactivate", "/memberships/#{membership.id}/deactivate", method: :post, class: "btn btn-warning" %></td>
+              <td><%= button_to "Deactivate", "/memberships/#{membership.id}/deactivate", method: :post, class: "btn btn-warning btn-sm" %></td>
             <% else %>
-              <td><%= button_to "Activate", "/memberships/#{membership.id}/activate", method: :post, class: "btn btn-success" %></td>
+              <td><%= button_to "Activate", "/memberships/#{membership.id}/activate", method: :post, class: "btn btn-success btn-sm" %></td>
             <% end %>
-            <td><%= button_to "Edit", "/memberships/#{membership.id}/edit", method: :get, class: "btn btn-secondary" %></td>
-            <td><%= link_to "Delete", membership_path(membership), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
+            <td><%= button_to "Edit", "/memberships/#{membership.id}/edit", method: :get, class: "btn btn-secondary btn-sm" %></td>
+            <td><%= link_to "Delete", membership_path(membership), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %></td>
           </tr>
         <% end %>
       </tbody>
