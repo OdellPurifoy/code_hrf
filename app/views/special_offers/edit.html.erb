@@ -1,0 +1,11 @@
+<div class='container' id='edit_membership' style="padding-top: 25px">
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <%= render "form", special_offer: @special_offer %>
+      <div>
+        <%= button_to "Delete Special Offer", @special_offer, class: 'btn btn-warning btn-sm mt-2', method: :delete %>
+        <%= link_to "Back to special offers", lounge_special_offers_path(@special_offer.lounge) %>
+      </div>
+    </div>
+  </div>
+</div>

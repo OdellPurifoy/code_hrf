@@ -1,0 +1,41 @@
+<div id="<%= dom_id special_offer %>">
+  <div class="icon-box">
+    <div class='mb-3'>
+      <%= image_tag special_offer.flyer, class: 'rounded', size: "100x100" if special_offer.flyer.present? %>
+    </div>
+    <p>
+      <strong>Name:</strong>
+      <%= special_offer.name %>
+    </p>
+
+    <p>
+      <strong>Start date:</strong>
+      <%= special_offer.start_date.strftime('%b %e, %Y') %>
+    </p>
+
+    <p>
+      <strong>End date:</strong>
+      <%= special_offer.end_date.strftime('%b %e, %Y') %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= special_offer.description.present? ? special_offer.description : 'No details available' %>
+    </p>
+
+    <p>
+      <strong>Members only:</strong>
+      <%= special_offer.members_only? ? 'Yes' : 'No' %>
+    </p>
+
+    <p>
+      <strong>Offer type:</strong>
+      <%= special_offer.offer_type %>
+    </p>
+
+    <p>
+      <strong>Offer code:</strong>
+      <%= special_offer.offer_code %>
+    </p>
+  </div>
+</div>
