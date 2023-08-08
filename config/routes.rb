@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :events
+  resources :events do
+    resources :rsvps, shallow: true
+  end
 
   resources :lounges do
     resources :events, shallow: true
