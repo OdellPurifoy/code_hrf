@@ -76,6 +76,7 @@ gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   gem 'annotate'
+  gem 'bullet'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'faker'
@@ -85,7 +86,6 @@ end
 
 group :development do
   gem 'web-console'
-
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

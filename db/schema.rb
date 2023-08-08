@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_806_202_413) do
+ActiveRecord::Schema[7.0].define(version: 20_230_808_001_317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pgcrypto'
   enable_extension 'plpgsql'
@@ -106,6 +106,19 @@ ActiveRecord::Schema[7.0].define(version: 20_230_806_202_413) do
     t.index ['lounge_id'], name: 'index_memberships_on_lounge_id'
   end
 
+  create_table 'rsvps', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    t.string 'first_name', null: false
+    t.string 'last_name', null: false
+    t.string 'phone_number'
+    t.string 'email', null: false
+    t.integer 'number_of_guests'
+    t.boolean 'attended', default: false
+    t.uuid 'event_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['event_id'], name: 'index_rsvps_on_event_id'
+  end
+
   create_table 'special_offers', id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
     t.string 'name', null: false
     t.date 'start_date', null: false
@@ -143,5 +156,6 @@ ActiveRecord::Schema[7.0].define(version: 20_230_806_202_413) do
   add_foreign_key 'events', 'lounges'
   add_foreign_key 'lounges', 'users'
   add_foreign_key 'memberships', 'lounges'
+  add_foreign_key 'rsvps', 'events'
   add_foreign_key 'special_offers', 'lounges'
 end
