@@ -3,10 +3,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.5'
+ruby '3.0.5'
 
 # Bootstrap for styling
 gem 'bootstrap', '~> 5.3.0.alpha3'
+gem "bootstrap_form", "~> 5.4"
 
 # Add devise for authentication
 gem 'devise', '~> 4.9', '>= 4.9.2'
