@@ -9,67 +9,39 @@
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit Profile</p>
                 
-                <%= render "devise/shared/error_messages", resource: resource %>
-
-                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <%= f.text_field :first_name, autofocus: true, class: 'form-control', autocomplete: "email" %>
-                      <%= f.label :first_name, class: 'form-label mt-2' %>
-                    </div>
+                <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                  <div class="form-outline flex-fill mb-0">
+                    <%= f.text_field :first_name, floating: true %>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user-plus fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <%= f.text_field :last_name, autofocus: true, class: 'form-control', autocomplete: "email" %>
-                      <%= f.label :last_name, class: 'form-label mt-2' %>
-                    </div>
+                  <div class="form-outline flex-fill mb-0">
+                    <%= f.text_field :last_name, floating: true %>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-calendar fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <%= f.date_field :date_of_birth, autofocus: true, class: 'form-control', autocomplete: "email" %>
-                      <%= f.label :date_of_birth, class: 'form-label mt-2' %>
-                    </div>
+                  <div class="form-outline flex-fill mb-0">
+                    <%= f.date_field :date_of_birth, floating: true %>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <%= f.email_field :email, autofocus: true, class: 'form-control', autocomplete: "email" %>
-                      <%= f.label :email, class: 'form-label mt-2' %>
-                    </div>
+                  <div class="form-outline flex-fill mb-0">
+                    <%= f.email_field :email, floating: true %>
                   </div>
 
                   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
                   <% end %>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <%= f.password_field :password, class: 'form-control', autocomplete: "new-password", placeholder: "Leave blank to keep current password" %>
-                      <%= f.label :password, class: 'form-label mt-2' %> <small>(6 characters minimum)</small>
-                    </div>
+                  <div class="form-outline flex-fill mb-0">
+                    <small>Leave blank to keep current password</small>
+                    <%= f.password_field :password, floating: true, placeholder: "Leave blank to keep current password" %>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password" %>
-                      <%= f.label :password_confirmation, class: 'form-label mt-2' %>
-                    </div>
+                  <div class="form-outline flex-fill mb-0">
+                    <%= f.password_field :password_confirmation, floating: true %>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <%= f.password_field :current_password, class: 'form-control', autocomplete: "current-password" %>
-                      <%= f.label :current_password, class: 'form-label mt-2' %> <small>(we need your current password to confirm your changes)</small>
-                    </div>
+                  <div class="form-outline flex-fill mb-0">
+                    <small>(we need your current password to confirm your changes)</small>
+                    <%= f.password_field :current_password, floating: true %>
                   </div>
 
                   <div class="d-flex justify-content-start mx-4 mb-3 mb-lg-4">
@@ -78,8 +50,6 @@
                     <%= link_to "Back", :back, id: 'profile-back-link' %>
                   </div>
                 <% end %>
-
-
               </div>
             </div>
           </div>
