@@ -1,24 +1,23 @@
-<div class='container' id='event_index'>
-  <section id="services" class="services">
-    <div class="d-flex justify-content-between mt-3">
-     <h3>Events</h3>
+<div class='container mt-5 mb-5', id='edit_lounge'>
+  <div class='row'>
+    <div class='col-12 services'>
+      <h3 class='mt-3 mb-3'>Events</h3>
       <%= link_to "Back to lounge", lounge_path(@events.first.lounge) %>
+      <div id="events">
+        <% @events.each do |event| %>
+          <div class="row pb-5">
+            <%= render event %>
+            <p>
+              <% if current_user.id == event.lounge.user_id %>
+                <%= link_to "Edit", edit_event_path(event), id: 'edit_event_button' %>
+              <% end %>
+              <%# <% if event.rsvp_needed? %>
+                <%# <%= link_to "RSVP Here", new_event_rsvp_path(event), id: 'edit_event_button' %> 
+              <%# <% end %>
+            </p>
+          </div>
+        <% end %>
+      </div>
     </div>
-
-    <div id="events">
-      <% @events.each do |event| %>
-        <div class="row pb-5">
-          <%= render event %>
-          <p>
-            <% if current_user.id == event.lounge.user_id %>
-              <%= link_to "Edit", edit_event_path(event), id: 'edit_event_button' %>
-            <% end %>
-            <%# <% if event.rsvp_needed? %>
-              <%# <%= link_to "RSVP Here", new_event_rsvp_path(event), id: 'edit_event_button' %> 
-            <%# <% end %>
-          </p>
-        </div>
-      <% end %>
-    </div>
-  <section id="services" class="services">
+  </div>
 </div>
