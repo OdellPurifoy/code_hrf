@@ -21,7 +21,7 @@ class Membership < ApplicationRecord
 
   validates_presence_of :first_name, :last_name, :email
   validates :email, uniqueness: { scope: :lounge_id, message: 'has already been taken' }
-  validates :phone_number, phone: { possible: true }
+  # validates :phone_number, phone: { possible: true }
 
   scope :active, -> { where(active: true) }
 
