@@ -23,5 +23,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications do
+    member do
+      post :read
+      post :unread
+    end
+  end
+
   get 'my_lounge', to: 'lounges#my_lounge'
 end
