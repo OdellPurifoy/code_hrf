@@ -1,0 +1,12 @@
+<div class='container mt-5 mb-5' id='edit_membership'>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <h3 class='mb-3'>Editing Event</h3>
+      <%= render "form", event: @event %>
+      <div>
+        <%= link_to "Back to events", lounge_events_path(@event.lounge) %>
+        <%= button_to "Destroy this event", @event, class: 'btn btn-warning', method: :delete %>
+      </div>
+    </div>
+  </div>
+</div>

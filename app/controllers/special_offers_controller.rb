@@ -7,9 +7,10 @@ class SpecialOffersController < ApplicationController
 
   def index
     @special_offers = if params[:search].present?
-                        SpecialOffer.search(params[:search]).order(created_at: :desc).page(params[:page])
+                        SpecialOffer.includes(%i[flyer_attachment
+                                                 lounge]).search(params[:search]).order(created_at: :desc).page(params[:page])
                       else
-                        @lounge.special_offers.order(created_at: :desc).page(params[:page])
+                        @lounge.special_offers.includes([:flyer_attachment]).order(created_at: :desc).page(params[:page])
                       end
   end
 
