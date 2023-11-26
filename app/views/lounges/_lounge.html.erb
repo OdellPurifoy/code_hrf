@@ -9,8 +9,8 @@
             <%= image_tag @lounge.logo, class: 'thumbnail', size: "100x100" %><br />
           <% else %>
             <i class="bi bi-shop"></i>
+            <h4><%= @lounge.name %></h4>
           <% end %>
-          <h4 style='margin-left: 0px'><%= @lounge.name %></h4>
         </div>
       </div>
       <div class="col-md-6 mt-4 mt-md-0">
