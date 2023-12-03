@@ -1,0 +1,12 @@
+<h3>Hi, <%= @member.first_name %></h3>
+
+<p>
+  Your membership details with <%= @member.lounge.name %> has been updated. See below for your updated details.
+</p>
+
+<p><strong>First Name: </strong><%= @member.first_name %></p>
+<p><strong>Last Name: </strong><%= @member.last_name %></p>
+<p><strong>Email: </strong><%= @member.email %></p>
+<p><strong>Phone Number:</strong> <%= @member.phone_number %></p>
+<p><strong>Receive Text Messages:</strong> <%= @member.do_not_text? ? 'No' : 'Yes' %></p>
+<p><strong>Receive Emails:</strong> <%= @member.do_not_email? ? 'No' : 'Yes' %></p>

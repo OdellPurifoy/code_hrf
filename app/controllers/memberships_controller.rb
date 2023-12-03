@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        # new_member_welcome_email(@membership)
+        new_member_welcome_email(@membership.id, @lounge.id)
         format.turbo_stream { redirect_to membership_path(@membership) }
         flash[:notice] = 'Membership successfully created.'
         format.html { redirect_to membership_url(@membership), notice: 'Membership was successfully created.' }
@@ -41,7 +41,7 @@ class MembershipsController < ApplicationController
   def update
     respond_to do |format|
       if @membership.update(membership_params)
-        # updated_membership_email(@membership)
+        updated_membership_email(@membership.id)
         format.turbo_stream { redirect_to [@lounge, @membership] }
         format.html { redirect_to membership_url(@membership), notice: 'Membership was successfully updated.' }
         flash[:notice] = 'Membership successfully updated.'
@@ -56,7 +56,7 @@ class MembershipsController < ApplicationController
   def destroy
     @lounge = @membership.lounge
 
-    # canceled_membership_email(@membership)
+    canceled_membership_email(@membership.id)
 
     @membership.destroy
     redirect_to "/lounges/#{@lounge.id}/memberships", status: :see_other
@@ -89,19 +89,19 @@ class MembershipsController < ApplicationController
     @lounge = Lounge.find(params[:lounge_id])
   end
 
-  # def membership_params
-  #   params.require(:membership).permit(:first_name, :last_name, :email, :phone_number, :do_not_text)
-  # end
+  def membership_params
+    params.require(:membership).permit(:first_name, :last_name, :email, :phone_number, :do_not_text, :do_not_email)
+  end
 
-  # def new_member_welcome_email(membership)
-  #   NewMemberWelcomeMailer.with(membership: membership, lounge: membership.lounge).send_welcome_email.deliver_now
-  # end
+  def new_member_welcome_email(membership_id, lounge_id)
+    NewMemberWelcomeMailer.with(membership_id: membership_id, lounge_id: lounge_id).send_welcome_email.deliver_now
+  end
 
-  # def updated_membership_email(membership)
-  #   UpdateMembershipMailer.with(membership: membership, lounge: membership.lounge).notify.deliver_now
-  # end
+  def updated_membership_email(membership_id)
+    UpdatedMembershipMailer.with(membership_id: membership_id).notify.deliver_now
+  end
 
-  # def canceled_membership_email(membership)
-  #   DeletedMembershipMailer.with(membership: membership, lounge: membership.lounge).notify.deliver_now
-  # end
+  def canceled_membership_email(membership_id)
+    DeletedMembershipMailer.with(membership_id: membership_id).notify.deliver_now
+  end
 end
