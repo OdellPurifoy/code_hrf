@@ -86,7 +86,10 @@ group :development, :test do
 end
 
 group :development do
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.5', require: false
   gem 'letter_opener', '~> 1.8', '>= 1.8.1'
+  gem "rack-livereload"
   gem 'web-console'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
