@@ -12,6 +12,8 @@ gem 'bootstrap_form', '~> 5.4'
 # Add devise for authentication
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
+gem 'name_of_person'
+
 # Fontawesome for fonts
 gem 'font-awesome-sass', '~> 6.1.1'
 

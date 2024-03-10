@@ -17,32 +17,36 @@
 
 </head>
 <body>
-  <div class="container pt-2 pb-2">
-    <header class="d-flex justify-content-between align-items-center">
-      <h2><a href="/">Herf</a></h2>
-      <nav id="navbar" class="navbar">
-        <ul class="list-unstyled mb-0">
-          <li><a href="/" class="active">Home</a></li>
-          <% if user_signed_in? %>
-            <%= link_to 'Create Lounge', new_lounge_path, class: "nav-link" %>
-            <%= link_to 'My Lounge', my_lounge_path, class: "nav-link" %>
-            <%= link_to 'Profile', edit_user_registration_path, class: "nav-link" %>
-            <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete, class: "nav-link" %>
-          <% elsif user_signed_in? && current_user.subscribed? %>
-            <%= link_to 'Profile', edit_user_registration_path, class: "nav-link" %>
-            <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete, class: "nav-link" %>
-          <% elsif user_signed_in? %>
-            <%= link_to 'Profile', edit_user_registration_path, class: "nav-link" %>
-            <%= button_to 'Log Out', destroy_user_session_path, id: 'logout',  method: :delete, class: "nav-link" %>
-          <% else %>
-            <%= link_to 'Log In', new_user_session_path, class: "nav-link" %>
-            <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %>
-          <% end %>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
-    </header>
-  </div>
+<div class="container pt-2 pb-2">
+  <header class="d-flex justify-content-between align-items-center">
+    <!-- SVG logo -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60" width="180" height="36">
+      <text x="0" y="45" font-family="Arial, sans-serif" font-size="45" font-weight="bold" fill="#000">HERF</text>
+    </svg>
+    <nav id="navbar" class="navbar">
+      <ul class="list-unstyled mb-0">
+        <li><a href="/" class="active">Home</a></li>
+        <% if user_signed_in? %>
+          <%= link_to 'Create Lounge', new_lounge_path, class: "nav-link" %>
+          <%= link_to 'My Lounge', my_lounge_path, class: "nav-link" %>
+          <%= link_to 'Profile', edit_user_registration_path, class: "nav-link" %>
+          <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete, class: "nav-link" %>
+        <% elsif user_signed_in? && current_user.subscribed? %>
+          <%= link_to 'Profile', edit_user_registration_path, class: "nav-link" %>
+          <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete, class: "nav-link" %>
+        <% elsif user_signed_in? %>
+          <%= link_to 'Profile', edit_user_registration_path, class: "nav-link" %>
+          <%= button_to 'Log Out', destroy_user_session_path, id: 'logout', method: :delete, class: "nav-link" %>
+        <% else %>
+          <%= link_to 'Log In', new_user_session_path, class: "nav-link" %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link" %>
+        <% end %>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+  </header>
+</div>
+
 
   <main>
     <div class="container">
