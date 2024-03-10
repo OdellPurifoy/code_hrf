@@ -12,6 +12,8 @@ gem 'bootstrap_form', '~> 5.4'
 # Add devise for authentication
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
+gem 'name_of_person'
+
 # Fontawesome for fonts
 gem 'font-awesome-sass', '~> 6.1.1'
 
@@ -86,7 +88,10 @@ group :development, :test do
 end
 
 group :development do
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.5', require: false
   gem 'letter_opener', '~> 1.8', '>= 1.8.1'
+  gem "rack-livereload"
   gem 'web-console'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
