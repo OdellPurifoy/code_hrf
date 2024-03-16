@@ -641,3 +641,32 @@ section {
     background: darken(#a85c44, 8);
   }
 }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  max-width: 250px; /* Maximum width for the sidebar */
+  width: 100%; /* Ensure sidebar takes full width on smaller screens */
+  background-color: #343a40;
+  padding-top: 20px; /* Adjust this value according to your navbar height */
+}
+.nav-link,
+.nav-link:not([class^="bi"]) {
+  color: #fff;
+}
+.content {
+  margin-left: 150px; /* Adjust based on sidebar width */
+  padding: 20px;
+  width: calc(100% - 250px); /* Calculate content width excluding sidebar */
+}
+@media (max-width: 768px) {
+  .sidebar {
+    max-width: 100%; /* Allow sidebar to occupy full width on smaller screens */
+  }
+  .content {
+    margin-left: 150px; /* Reset left margin for content */
+    width: 100%; /* Ensure content takes full width on smaller screens */
+  }
+}
