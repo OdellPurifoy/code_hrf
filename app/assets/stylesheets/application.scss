@@ -532,6 +532,7 @@ section {
   margin-bottom: 20px;
   padding: 30px;
   border-radius: 6px;
+  position: relative; /* Add this to make the container position-relative */
 }
 
 .services .icon-box i {
@@ -560,6 +561,14 @@ section {
 
 .services .icon-box:hover h4 a {
   color: #d9232d;
+}
+
+.services .icon-box .btn {
+  position: absolute;
+  background-color: none;
+  color: white;
+  bottom: 20px; /* Adjust this value to control the distance of the button from the bottom */
+  right: 20px; /* Adjust this value to control the distance of the button from the right */
 }
 
 /*--------------------------------------------------------------
@@ -594,6 +603,21 @@ section {
       color: white;
     }
   }
+}
+
+.list-group-item {
+  position: relative;
+  padding-top: 5px; /* Adjust this value to change the vertical position of the icon */
+  padding-left: 40px; /* Adjust this value to increase space between icon and text */
+}
+.list-group-item .icon {
+  position: absolute;
+  padding-top: 5px; /* Adjust this value to change the vertical position of the icon */
+  font-size: 1.5em; /* Adjust the font size to make icons bigger */
+  color: #de8855;
+  left: 0;
+  top: 0;
+  margin-right: 10px; /* Adjust this value to increase space between icon and text */
 }
 
 #pricing-input,
