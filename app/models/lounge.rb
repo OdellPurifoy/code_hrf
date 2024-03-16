@@ -27,7 +27,9 @@ class Lounge < ApplicationRecord
 
   accepts_nested_attributes_for :address
 
-  has_one_attached :logo
+  has_one_attached :logo do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100,100]
+  end
 
   validates :name, :phone_number, :description, presence: true
   validates :description, length: { maximum: 500, too_long: '%<count>s characters is the maximum allowed' }

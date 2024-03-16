@@ -7,6 +7,10 @@ class EventsController < ApplicationController
 
   def index
     @events = @lounge.events.includes([:flyer_attachment]).order(created_at: :desc)
+
+    if @events.nil?
+      flash.now[:notice] = "No events found."
+    end  
   end
 
   def show; end

@@ -1,7 +1,70 @@
-<div class='container mt-5 mb-5', id='edit_lounge'>
-  <div class='row'>
-    <div class='col-12'>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Navbar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS (optional) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #343a40;
+        padding-top: 20px; /* Adjust this value according to your navbar height */
+      }
+      .nav-link,
+      .nav-link:not([class^="bi"]) {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h4 class="text-light" style="padding-left: 20px;"><%= @current_user.lounges.first.name %></h4>
+      </div>
+      <nav class="nav flex-column">
+        <%= link_to new_lounge_event_path(current_user.lounges.first), class: 'nav-link' do %>
+          <i class="bi bi-pencil-square me-2"></i>
+          New Event
+        <% end %>
+        <%= link_to lounge_events_path(current_user.lounges.first), class: 'nav-link' do %>
+          <i class="bi bi-list me-2"></i>
+          View Events
+        <% end %>
+        <%= link_to edit_lounge_path(current_user.lounges.first), class: 'nav-link' do %>
+          <i class="bi bi-pencil me-2"></i>
+          Edit Lounge
+        <% end %>
+        <%= link_to lounge_memberships_path(current_user.lounges.first), class: 'nav-link' do %>
+          <i class="bi bi-people me-2"></i>
+          Memberships
+        <% end %>
+        <%= link_to lounge_special_offers_path(current_user.lounges.first), class: 'nav-link' do %>
+          <i class="bi bi-stars me-2"></i>
+          Special Offers
+        <% end %>
+        <%= link_to "/lounges/#{current_user.lounges.first.id}", class: 'nav-link', method: :delete do %>
+          <i class="bi bi-trash me-2"></i>
+          Delete Lounge
+        <% end %>
+      </nav>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Your content goes here -->
       <%= render 'shared/current_user_lounge', locals: { current_user_lounge: @current_user_lounge } %>
     </div>
-  </div>
-</div>
+
+    <!-- Bootstrap Bundle with Popper.js and Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
