@@ -14,7 +14,7 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <div class="sidebar-header">
-      <h4 class="text-light" style="padding-left: 30px;"><%= @current_user.lounges.first.name %></h4>
+      <h4 class="text-light" style="padding-left: 30px;"><%= current_user.lounges.first.name %></h4>
     </div>
     <nav class="nav flex-column" style="padding-left: 10px;">
       <%= link_to new_lounge_event_path(current_user.lounges.first), class: 'nav-link' do %>
@@ -47,11 +47,83 @@
   <!-- Content -->
   <div class="content">
     <div class="container">
-      <%= render 'shared/current_user_lounge', locals: { current_user_lounge: @current_user_lounge } %>
+      <!-- Dashboard Content -->
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <!-- Lounge Logo -->
+              <% if current_user.lounges.first.logo.attached? %>
+                <%= image_tag current_user.lounges.first.logo.variant(:thumb), class: "card-img-top rounded mb-3" %>
+              <% end %>
+            </div>
+            <div class="col-md-12">
+              <!-- Lounge Name -->
+              <h2 class="card-title text-center pb-2">Lounge Details</h2>
+              <!-- Lounge Details -->
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="list-unstyled">
+                    <li class="pb-1"><i class="bi bi-envelope me-1" style="font-size: 1rem;" ></i> Email: <%= current_user.lounges.first.email %></li>
+                    <li class="pb-1"><i class="bi bi-phone me-1" style="font-size: 1rem;"></i> Phone: <%= current_user.lounges.first.phone_number %></li>
+                    <li class="pb-1"><i class="bi bi-geo me-1" style="font-size: 1rem;"></i> Address: <%= current_user.lounges.first.address.address_street_1 %></li>
+                    <li class="pb-1"><i class="bi bi-geo me-1" style="font-size: 1rem;"></i> Address 2: <%= current_user.lounges.first.address.address_street_2 %></li>
+                    <li class="pb-1"><i class="bi bi-geo-alt me-1" style="font-size: 1rem;"></i> City: <%= current_user.lounges.first.address.city %></li>
+                    <li class="pb-1"><i class="bi bi-geo-alt me-1" style="font-size: 1rem;"></i> State: <%= current_user.lounges.first.address.state %></li>
+                    <li class="pb-1"><i class="bi bi-geo-alt me-1" style="font-size: 1rem;"></i> Zipcode: <%= current_user.lounges.first.address.zipcode %></li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="list-unstyled">
+                    <li class="pb-1"><i class="bi bi-cup-straw me-1" style="font-size: 1.25rem;"></i> Alcohol Served: <%= current_user.lounges.first.alcohol_served ? 'Yes' : 'No' %></li>
+                    <li class="pb-1"><i class="bi bi-emoji-smile me-1" style="font-size: 1rem;"></i> Outside Alcohol Allowed: <%= current_user.lounges.first.outside_alcohol_allowed ? 'Yes' : 'No' %></li>
+                    <li class="pb-1"><i class="bi bi-egg-fried me-1" style="font-size: 1rem;"></i> Food Served: <%= current_user.lounges.first.food_served ? 'Yes' : 'No' %></li>
+                    <li class="pb-1"><i class="bi bi-fire me-1" style="font-size: 1rem;"></i> Outside Cigars Allowed: <%= current_user.lounges.first.outside_cigars_allowed ? 'Yes' : 'No' %></li>
+                    <li class="pb-1"><i class="bi bi-card-text me-1" style="font-size: 1rem;"></i> Description: <%= current_user.lounges.first.description %></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Upcoming Events Section -->
+  <div class="upcoming-events">
+    <div class="container">
+      <h2 class="text-center mt-4 mb-4" style="color: white;">Upcoming Events</h2>
+      <div class="row">
+        <% if current_user.lounges.first.events.any? %>
+          <!-- Display Cards for Upcoming Events -->
+          <% current_user.lounges.first.events.each do |event| %>
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><%= event.name %></h5>
+                  <p class="card-text"><%= event.event_description %></p>
+                  <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <!-- Display a Single Card with "No Upcoming Events" -->
+          <div class="col-md-4 offset-md-4">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title">No Upcoming Events</h5>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-
+</div>
   <!-- Bootstrap Bundle with Popper.js and Bootstrap JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+      <%# <%= render 'shared/current_user_lounge', locals: { current_user_lounge: @current_user_lounge } %> 
