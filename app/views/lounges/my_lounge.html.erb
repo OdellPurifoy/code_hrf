@@ -98,11 +98,21 @@
           <!-- Display Cards for Upcoming Events -->
           <% current_user.lounges.first.events.each do |event| %>
             <div class="col-md-4 mb-4">
-              <div class="card">
+              <div class="card" style="position: relative;">
                 <div class="card-body">
                   <h5 class="card-title"><%= event.name %></h5>
+                  <p class="card-text"><strong><%= event.event_type %></strong></p>
+                  <p class="card-text"><%= event.event_date.strftime('%b %d, %Y') %></p>
+                  <p class="card-text">Starting: <%= event.start_time.strftime('%l:%M %p') %></p>
+                  <p class="card-text">Ending: <%= event.end_time.strftime('%l:%M %p') %></p>
                   <p class="card-text"><%= event.event_description %></p>
-                  <a href="#" class="btn btn-primary">View Details</a>
+                  <p class="card-text"><%= event.event_url.present? ? event.event_url : nil %></p>
+                  <p class="card-text"><%= event.event_url.present? ? event.event_url : nil %></p>
+                </div>
+                <div style="position: absolute; bottom: 5px; right: 15px;">
+                  <%= link_to edit_event_path(event) do %>
+                    <i class="fas fa-ellipsis-h fa-lg" style="color: #de8855;"></i>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -113,6 +123,45 @@
             <div class="card">
               <div class="card-body text-center">
                 <h5 class="card-title">No Upcoming Events</h5>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upcoming Special Offers Section -->
+  <div class="upcoming-events">
+    <div class="container">
+      <h2 class="text-center mt-4 mb-4" style="color: white;">Upcoming Special Offers</h2>
+      <div class="row">
+        <% if current_user.lounges.first.special_offers.any? %>
+          <!-- Display Cards for Upcoming Events -->
+          <% current_user.lounges.first.special_offers.each do |special_offer| %>
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><%= special_offer.name %></h5>
+                  <p class="card-text">Starting: <%= special_offer.start_date.strftime('%b %d, %Y') %></p>
+                  <p class="card-text">Ending: <%= special_offer.end_date.strftime('%b %d, %Y') %></p>
+                  <p class="card-text"><%= special_offer.description %></p>
+                  <p class="card-text"><%= special_offer.offer_type %></p>
+                  <div style="position: absolute; bottom: 5px; right: 15px;">
+                    <%= link_to edit_special_offer_path(special_offer) do %>
+                      <i class="fas fa-ellipsis-h fa-lg" style="color: #de8855;"></i>
+                    <% end %>
+                  </div>                
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <!-- Display a Single Card with "No Upcoming Special Offers" -->
+          <div class="col-md-4 offset-md-4">
+            <div class="card">
+              <div class="card-body text-center">
+                <h5 class="card-title">No Upcoming Special Offers</h5>
               </div>
             </div>
           </div>
